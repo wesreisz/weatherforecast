@@ -10,10 +10,25 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- task: BuildpacksInstaller@1
+  inputs:
+    buildpacksVersion: '0.16.0'
+    
+- task: BuildpacksTask@1
+  inputs:
+    command: 'build'
+    imageName: 'harbor.wesleyreisz.com/sample/weatherforecast'
+    builder: 'paketobuildpacks/builder:base'
+    pullPolicy: 'always'
+    tags:  |
+      harbor.wesleyreisz.com/sample/weatherforecast:latest
+      harbor.wesleyreisz.com/sample/weatherforecast:v$(Build.BuildId)
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: Docker@2
+  inputs:
+    containerRegistry: 'harbor.wesleyreisz.com'
+    repository: 'dotnet-core-demo'
+    command: 'push'
+    tags: |
+      latest
+      v$(Build.BuildId)
