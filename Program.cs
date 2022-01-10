@@ -18,7 +18,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseAuthorization();
 
-app.MapGet("/", () => "Available endpoints: \n - /weatherforecast");
+app.MapGet("/", () => "Available endpoints in this Service: \n - /weatherforecast");
 app.MapControllers();
 
 app.Run();
