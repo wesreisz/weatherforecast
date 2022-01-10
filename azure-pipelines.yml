@@ -12,7 +12,7 @@ pool:
 steps:
 - task: BuildpacksInstaller@1
   inputs:
-    buildpacksVersion: '0.16.0'
+    buildpacksVersion: '0.23.0'
     
 - task: BuildpacksTask@1
   inputs:
