@@ -27,7 +27,7 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'harbor.wesleyreisz.com'
-    repository: 'harbor.wesleyreisz.com/sample/weatherforecast'
+    repository: 'sample/weatherforecast'
     command: 'push'
     tags: |
       latest
